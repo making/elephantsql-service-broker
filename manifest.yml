@@ -1,0 +1,11 @@
+applications:
+- name: elephantsql-service-broker
+  docker:
+    image: making/elephantsql-service-broker:latest
+  memory: 256m
+  health-check-type: http
+  health-check-http-endpoint: /actuator/health
+  env:
+    SERVER_TOMCAT_MAX_THREADS: 4
+    JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -Xss512k'
+    BPL_THREAD_COUNT: 20

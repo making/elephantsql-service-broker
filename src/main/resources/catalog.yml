@@ -1,0 +1,33 @@
+---
+services:
+- id: c3c433b2-2806-4c8d-a78f-e57b4f04aa8a
+  name: elephantsql
+  description: PostgreSQL as a Service
+  bindable: true
+  planUpdateable: false
+  requires: []
+  tags:
+  - postgresql
+  - postgres
+  - elephantsql
+  metadata:
+    displayName: ElephantSQL
+    documentationUrl: https://github.com/making/elephantsql-service-broker
+    imageUrl: https://pbs.twimg.com/profile_images/2661035254/f1797e21af006ca889d3e5f39293fca1_400x400.png
+    longDescription: The most advanced open-source database, hosted in the cloud.
+    providerDisplayName: "@making"
+    supportUrl: https://github.com/making/elephantsql-service-broker
+  plans:
+  - id: cb5169ca-6fb6-4a9f-9987-2d7437be70e7
+    name: turtle
+    description: Free shared server (DO NOT USE IN PRODUCTION!!)
+    free: true
+    metadata:
+      displayName: Tiny Turtle
+      bullets:
+      - 20 MB data
+      - 5 concurrent connections
+      costs:
+      - amount:
+          usd: 0
+        unit: MONTHLY
