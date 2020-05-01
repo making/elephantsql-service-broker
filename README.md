@@ -2,7 +2,7 @@
 
 An Open Service Broker for [ElephantSQL](https://www.elephantsql.com/).
 
-## How to deploy on Cloud Foundry
+## How to deploy to Cloud Foundry
 
 Get an [API Key](https://customer.elephantsql.com/apikeys).
 
@@ -76,7 +76,7 @@ The following regions are supported.
 * `azure-arm::centralus`
 * `azure-arm::westeurope`
 
-## How to deploy on Kubernetes
+## How to deploy to Kubernetes
 
 ### Deploy with [`ytt`](https://get-ytt.io/) and [`kapp`](https://get-kapp.io/)
 
