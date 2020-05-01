@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: elephantsql-service-broker
+  name: elephantsql-service-broker
+  namespace: elephantsql-service-broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elephantsql-service-broker
+  template:
+    metadata:
+      labels:
+        app: elephantsql-service-broker
+    spec:
+      containers:
+      - image: making/elephantsql-service-broker:latest
+        name: elephantsql-service-broker
+        env:
+        - name: SERVER_TOMCAT_MAX_THREADS
+          value: "4"
+        - name: JAVA_OPTS
+          value: "-XX:ReservedCodeCacheSize=32M -Xss512k"
+        - name: BPL_THREAD_COUNT
+          value: "20"
+        - name: SPRING_SECURITY_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: elephantsql-service-broker
+              key: spring_security_user_password
+        - name: ELEPHANTSQL_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: elephantsql-service-broker
+              key: elephantsql_api_key
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 256Mi
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /actuator/info
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: http

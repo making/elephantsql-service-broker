@@ -1,0 +1,4 @@
+#@data/values
+---
+spring_security_user_password: CHANGEME
+elephantsql_api_key: CHANGEME

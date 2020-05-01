@@ -76,6 +76,36 @@ The following regions are supported.
 * `azure-arm::centralus`
 * `azure-arm::westeurope`
 
+## How to deploy on Kubernetes
+
+### Deploy with [`ytt`](https://get-ytt.io/) and [`kapp`](https://get-kapp.io/)
+
+```
+cp k8s/sample-values.yml k8s/values.yml
+# Update CHANGEME in k8s/values.yml
+kapp -a elephantsql-service-broker deploy -c \
+     -f <(ytt -f k8s/config -f k8s/values.yml)
+```
+
+or
+
+```
+kapp -a elephantsql-service-broker deploy -c \
+     -f <(ytt -f k8s/config -f k8s/sample-values.yml \
+              -v spring_security_user_password=xxxxxxxxxx \
+              -v elephantsql_api_key=XXXXXXXX)
+```
+
+### Deploy with only `kubectl`
+
+```
+kubectl apply -f k8s/config/namespace.yml
+kubectl create secret -n elephantsql-service-broker generic elephantsql-service-broker \
+  --from-literal=spring_security_user_password=xxxxxxxxxx \
+  --from-literal=elephantsql_api_key=XXXXXXXX
+kubctl apply -f k8s/config/deployment.yml -f k8s/config/service.yml
+```
+
 ## Testing Service Broker functionalities locally
 
 ```
