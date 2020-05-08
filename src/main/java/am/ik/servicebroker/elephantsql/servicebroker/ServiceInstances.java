@@ -18,7 +18,9 @@ public class ServiceInstances {
         final String password = userInfo[1];
         credentials.setPassword(password);
         credentials.setUri(url.toString());
-        credentials.setJdbcUrl("jdbc:" + url.toString().replace("postgres:", "postgresql:"));
+        credentials.setJdbcUrl("jdbc:" + url.toString()
+                .replace(url.getUserInfo() + "@", "")
+                .replace("postgres:", "postgresql:"));
         return credentials;
     }
 
