@@ -18,6 +18,6 @@ class ServiceInstancesTest {
         assertThat(credentials.getUsername()).isEqualTo("iuyhjiu");
         assertThat(credentials.getPassword()).isEqualTo("iyhjiuyhjmhuhjk");
         assertThat(credentials.getUri()).isEqualTo("postgres://iuyhjiu:iyhjiuyhjmhuhjk@test-speedcar-01.db.client.com:5432/iuyhjiu");
-        assertThat(credentials.getJdbcUrl()).isEqualTo("jdbc:postgresql://test-speedcar-01.db.client.com:5432/iuyhjiu");
+        assertThat(credentials.getJdbcUrl()).isEqualTo("jdbc:postgresql://test-speedcar-01.db.client.com:5432/iuyhjiu?user=iuyhjiu&password=iyhjiuyhjmhuhjk");
     }
 }

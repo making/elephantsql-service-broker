@@ -1,5 +1,7 @@
 package am.ik.servicebroker.elephantsql.servicebroker;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import java.net.URI;
 
 public class ServiceInstances {
@@ -11,16 +13,24 @@ public class ServiceInstances {
         final Credentials credentials = new Credentials();
         credentials.setHostname(url.getHost());
         credentials.setPort(url.getPort());
-        credentials.setName(url.getRawPath().replaceFirst("/", ""));
+        final String name = url.getRawPath().replaceFirst("/", "");
+        credentials.setName(name);
         final String[] userInfo = url.getUserInfo().split(":");
         final String username = userInfo[0];
         credentials.setUsername(username);
         final String password = userInfo[1];
         credentials.setPassword(password);
         credentials.setUri(url.toString());
-        credentials.setJdbcUrl("jdbc:" + url.toString()
-                .replace(url.getUserInfo() + "@", "")
-                .replace("postgres:", "postgresql:"));
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUri(url);
+        credentials.setJdbcUrl("jdbc:" + builder.cloneBuilder()
+                .scheme("postgresql")
+                .userInfo(null)
+                .port(url.getPort())
+                .replacePath(name)
+                .queryParam("user", username)
+                .queryParam("password", password)
+                .build()
+                .toUriString());
         return credentials;
     }
 
