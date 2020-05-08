@@ -60,5 +60,5 @@ jobs:
         rm -f pack-*.tgz
         ./pack build making/elephantsql-service-broker \
           -p target/elephantsql-service-broker-*.jar  \
-          --builder gcr.io/paketo-buildpacks/builder:base \
-          --publish
+          --builder gcr.io/paketo-buildpacks/builder:base
+        docker push making/elephantsql-service-broker
