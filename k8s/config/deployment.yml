@@ -23,7 +23,7 @@ spec:
           value: "4"
         - name: JAVA_OPTS
           value: "-XX:ReservedCodeCacheSize=32M -Xss512k"
-        - name: BPL_THREAD_COUNT
+        - name: BPL_JVM_THREAD_COUNT
           value: "20"
         - name: SPRING_SECURITY_USER_PASSWORD
           valueFrom:
