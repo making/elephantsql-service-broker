@@ -96,6 +96,12 @@ kapp -a elephantsql-service-broker deploy -c \
               -v elephantsql_api_key=XXXXXXXX)
 ```
 
+Register the service broker
+
+```
+cf create-service-broker elephantsql admin xxxxxxxxxxxx http://elephantsql-service-broker.elephantsql-service-broker.svc.cluster.local:8080
+```
+
 ### Deploy with only `kubectl`
 
 ```
