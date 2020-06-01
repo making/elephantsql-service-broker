@@ -1,6 +1,7 @@
 package am.ik.servicebroker.elephantsql.client;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -40,7 +41,7 @@ public enum ElephantSqlRegion {
 
     private static final String SEPARATOR = "::";
 
-    @JsonCreator
+    @JsonCreator(mode = Mode.DELEGATING)
     public static ElephantSqlRegion of(String region) {
         if (region == null) {
             return null;
